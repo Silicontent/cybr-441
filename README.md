@@ -1,2 +1,2 @@
-# cybr-441
-Projects for CYBR 441.
+# CYBR 441
+Submissions for CYBR 441, sorted by project and problem number.
