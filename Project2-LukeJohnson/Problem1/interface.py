@@ -16,7 +16,7 @@ class GraphInterface:
         self.__photo = None
 
         self.__window = tk.Tk()
-        self.__window.title("Graph Search")
+        self.__window.title("Graph Search™ | a product by MediocrityCo. Technologies")
 
         # Start node input
         tk.Label(
@@ -94,7 +94,7 @@ class GraphInterface:
 
             self.showCurrentState()
 
-        except ValueError:
+        except (ValueError, IndexError) as e:
             messagebox.showerror(
                 "Invalid Input",
                 "Please enter a valid node ID."
@@ -120,7 +120,7 @@ class GraphInterface:
 
             self.showCurrentState()
 
-        except ValueError:
+        except (ValueError, IndexError) as e:
             messagebox.showerror(
                 "Invalid Input",
                 "Please enter a valid node ID."

@@ -59,6 +59,3 @@ class Node:
         """
 
         self.connections[action] = otherNode
-
-    def __str__(self):
-        pass
