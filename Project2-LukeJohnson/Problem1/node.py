@@ -30,6 +30,9 @@ class Node:
 
     def getGoal(self):
         return self.goal
+
+    def getParent(self):
+        return self.parent
     
     def setImg(self, img):
         self.img = img
@@ -39,6 +42,9 @@ class Node:
 
     def setGoal(self, goal):
         self.goal = goal
+
+    def setParent(self, parent):
+        self.parent = parent
 
     def addConnection(self, otherNode, action):
         """ Add a new connection to another node in the graph.

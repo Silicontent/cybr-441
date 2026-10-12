@@ -21,7 +21,7 @@ class GraphInterface:
         # Start node input
         tk.Label(
             self.__window,
-            text="Start Node ID: (min-max) REPLACE ME"
+            text="Start Node ID: (0-7)"
         ).grid(row=1, column=0, padx=30, pady=20)
 
         self.__startEntry = tk.Entry(self.__window)
@@ -84,7 +84,7 @@ class GraphInterface:
             ######
             self.__path = self.__graph.bfs(startId)
             self.__currentStep = 0
-            print(f"Path for BFS: {self.__path}")
+            print(f"Path for BFS: {self.stringifyPath(self.__path)}")
             if len(self.__path) == 0:
                 messagebox.showinfo(
                     "No Solution",
@@ -110,7 +110,7 @@ class GraphInterface:
             ######
             self.__path = self.__graph.dfs(startId)
             self.__currentStep = 0
-            print(f"Path for DFS: {self.__path}")
+            print(f"Path for DFS: {self.stringifyPath(self.__path)}")
             if len(self.__path) == 0:
                 messagebox.showinfo(
                     "No Solution",
@@ -131,7 +131,7 @@ class GraphInterface:
         if len(self.__path) == 0:
             return
 
-        nodeId = self.__path[self.__currentStep]
+        nodeId = self.__path[self.__currentStep].getId()
 
         node = self.__graph.getNode(nodeId)
 
@@ -146,7 +146,7 @@ class GraphInterface:
         actionText = ''
         goalText = ""
 
-        if node.getIsGoal():
+        if node.getGoal():
             goalText = " (GOAL)"
 
         self.__infoLabel.config(
@@ -175,6 +175,29 @@ class GraphInterface:
         if self.__currentStep > 0:
             self.__currentStep -= 1
             self.showCurrentState()
+
+    def stringifyPath(self, path):
+        """Create a string of the found node path using node IDs.
+
+        Due to the way nodes are stored in this implementation, this tiny
+        helper function makes the path print-out more readable. This function
+        creates a string representation of the path using the node IDs rather
+        than the address of the Node objects.
+
+        Args:
+            path: The found node path, stored as a list of Nodes.
+
+        Returns:
+            A string representing the path, in the format [id, id, ...]
+        """
+
+        result = "["
+        for n in path:
+            result += f"{n.getId()}"
+            if not n.getGoal():
+                result += ", "
+        result += "]"
+        return result
 
     def run(self):
         self.__window.mainloop()

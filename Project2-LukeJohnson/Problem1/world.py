@@ -17,7 +17,7 @@ class World:
         # create nodes (8 total, with IDs 0-7)
         nodes: list[Node] = []
         for i in range(8):
-            nodes.append(Node(f"{i}.png", i))
+            nodes.append(Node(f"images/{i}.png", i))
 
         # node 0 (vacuum left, dirt left & right)
         nodes[0].addConnection(nodes[0], self.left)

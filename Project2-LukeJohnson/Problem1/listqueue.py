@@ -63,6 +63,11 @@ class ListQueue:
 
         return node in self.get()
 
+    def display(self) -> None:
+        for n in self.get():
+            print(f"{n.getId()} <--", end=" ")
+        print()
+
     # getters =================================================================
     def get(self) -> list:
         return self._queue
